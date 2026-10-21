@@ -1,0 +1,14 @@
+O.*
+bin/
+db/
+dbd/
+html/
+include/
+lib/
+configure/O.*
+configure/RELEASE.local
+*.swp
+compile_commands.json
+.tests-failed.log
+*.tap
+/iocBoot/iocReolink/autosave/

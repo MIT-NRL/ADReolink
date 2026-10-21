@@ -1,0 +1,15 @@
+[Unit]
+Description=ADReolink camera EPICS IOC
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/mitr_4dh4/Documents/GitHub/ADReolink/iocBoot/iocReolink/run-reolink-ioc
+WorkingDirectory=/home/mitr_4dh4/Documents/GitHub/ADReolink/iocBoot/iocReolink
+Restart=always
+RestartSec=5
+Nice=5
+
+[Install]
+WantedBy=default.target

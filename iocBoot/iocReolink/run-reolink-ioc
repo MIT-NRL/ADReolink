@@ -1,0 +1,28 @@
+#!/bin/bash
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+credential_file="${REOLINK_CREDENTIAL_FILE:-/home/mitr_4dh4/.config/epics/reolink.env}"
+network_file="${EPICS_NETWORK_FILE:-/home/mitr_4dh4/.config/epics/network.env}"
+if [[ ! -r "$credential_file" ]]; then
+    echo "ADReolink credential file is not readable: $credential_file" >&2
+    exit 1
+fi
+if [[ ! -r "$network_file" ]]; then
+    echo "ADReolink network configuration is not readable: $network_file" >&2
+    exit 1
+fi
+
+set -a
+# shellcheck disable=SC1090
+source "$network_file"
+# shellcheck disable=SC1090
+source "$credential_file"
+set +a
+
+# autosave does not create SAVE_PATH/autosave itself.  Ensure it is present
+# before st.cmd configures save_restore, including on a fresh checkout.
+install -d -m 0700 "$script_dir/autosave"
+
+cd "$script_dir"
+exec ../../bin/linux-x86_64/reolinkIOC st.cmd

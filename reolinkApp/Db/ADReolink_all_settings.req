@@ -1,0 +1,3 @@
+file "ADReolink_settings.req", P=$(P), R=Reolink1:
+file "ADReolink_settings.req", P=$(P), R=Reolink2:
+file "ADReolink_lens_settings.req", P=$(P), R=Reolink2:

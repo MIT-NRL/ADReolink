@@ -1,0 +1,26 @@
+# Example for two cameras in one IOC. The environment variables named below
+# must exist in the IOC process before this file is loaded.
+
+epicsEnvSet("REOLINK_QSIZE", "2")
+
+ADReolinkConfig("REOLINK1", "192.168.138.210", 0, 554, 80, "REOLINK_CAM1_USER", "REOLINK_CAM1_PASSWORD", 0, 0, 0, 0)
+dbLoadRecords("$(ADREOLINK)/db/ADReolink.template", "P=$(PREFIX),R=Reolink1:,PORT=REOLINK1,ADDR=0,TIMEOUT=1")
+
+NDCodecConfigure("REOLINK1_CODEC", $(REOLINK_QSIZE), 0, "REOLINK1", 0, 0, 0, 0, 0, 1)
+dbLoadRecords("$(ADCORE)/db/NDCodec.template", "P=$(PREFIX),R=Reolink1:Codec1:,PORT=REOLINK1_CODEC,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK1")
+NDPvaConfigure("REOLINK1_PVA", $(REOLINK_QSIZE), 0, "REOLINK1_CODEC", 0, "$(PREFIX)Reolink1:Pva1:Image", 0, 0, 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDPva.template", "P=$(PREFIX),R=Reolink1:Pva1:,PORT=REOLINK1_PVA,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK1_CODEC")
+NDFileJPEGConfigure("REOLINK1_JPEG", $(REOLINK_QSIZE), 0, "REOLINK1", 0, 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDFileJPEG.template", "P=$(PREFIX),R=Reolink1:JPEG1:,PORT=REOLINK1_JPEG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK1")
+
+ADReolinkConfig("REOLINK2", "192.168.138.211", 0, 554, 80, "REOLINK_CAM2_USER", "REOLINK_CAM2_PASSWORD", 0, 0, 0, 0)
+dbLoadRecords("$(ADREOLINK)/db/ADReolink.template", "P=$(PREFIX),R=Reolink2:,PORT=REOLINK2,ADDR=0,TIMEOUT=1")
+
+NDCodecConfigure("REOLINK2_CODEC", $(REOLINK_QSIZE), 0, "REOLINK2", 0, 0, 0, 0, 0, 1)
+dbLoadRecords("$(ADCORE)/db/NDCodec.template", "P=$(PREFIX),R=Reolink2:Codec1:,PORT=REOLINK2_CODEC,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK2")
+NDPvaConfigure("REOLINK2_PVA", $(REOLINK_QSIZE), 0, "REOLINK2_CODEC", 0, "$(PREFIX)Reolink2:Pva1:Image", 0, 0, 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDPva.template", "P=$(PREFIX),R=Reolink2:Pva1:,PORT=REOLINK2_PVA,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK2_CODEC")
+NDFileJPEGConfigure("REOLINK2_JPEG", $(REOLINK_QSIZE), 0, "REOLINK2", 0, 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDFileJPEG.template", "P=$(PREFIX),R=Reolink2:JPEG1:,PORT=REOLINK2_JPEG,ADDR=0,TIMEOUT=1,NDARRAY_PORT=REOLINK2")
+
+set_requestfile_path("$(ADREOLINK)/db")

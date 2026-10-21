@@ -1,0 +1,6 @@
+$(P)$(R)AcquirePeriod
+$(P)$(R)ImageMode
+$(P)$(R)NumImages
+$(P)$(R)ArrayCallbacks
+$(P)$(R)PTZSpeed
+$(P)$(R)PTZMoveTimeout

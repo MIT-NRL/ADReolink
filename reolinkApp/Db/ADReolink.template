@@ -1,0 +1,281 @@
+include "ADBase.template"
+
+record(mbbo, "$(P)$(R)PTZDirection") {
+    field(DESC, "PTZ movement command")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_DIRECTION")
+    field(ZRST, "Stop")
+    field(ONST, "Up")
+    field(ONVL, "1")
+    field(TWST, "Down")
+    field(TWVL, "2")
+    field(THST, "Left")
+    field(THVL, "3")
+    field(FRST, "Right")
+    field(FRVL, "4")
+    field(FVST, "Left Up")
+    field(FVVL, "5")
+    field(SXST, "Right Up")
+    field(SXVL, "6")
+    field(SVST, "Left Down")
+    field(SVVL, "7")
+    field(EIST, "Right Down")
+    field(EIVL, "8")
+}
+
+record(mbbi, "$(P)$(R)PTZDirection_RBV") {
+    field(DESC, "Current PTZ movement")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_DIRECTION")
+    field(SCAN, "I/O Intr")
+    field(ZRST, "Stop")
+    field(ONST, "Up")
+    field(ONVL, "1")
+    field(TWST, "Down")
+    field(TWVL, "2")
+    field(THST, "Left")
+    field(THVL, "3")
+    field(FRST, "Right")
+    field(FRVL, "4")
+    field(FVST, "Left Up")
+    field(FVVL, "5")
+    field(SXST, "Right Up")
+    field(SXVL, "6")
+    field(SVST, "Left Down")
+    field(SVVL, "7")
+    field(EIST, "Right Down")
+    field(EIVL, "8")
+}
+
+record(bo, "$(P)$(R)PTZStop") {
+    field(DESC, "Stop PTZ immediately")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_STOP")
+    field(ZNAM, "Idle")
+    field(ONAM, "Stop")
+    field(HIGH, "0.1")
+}
+
+record(longout, "$(P)$(R)PTZSpeed") {
+    field(DESC, "PTZ speed")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_SPEED")
+    field(DRVL, "1")
+    field(DRVH, "64")
+    field(VAL,  "20")
+    info(autosaveFields, "VAL")
+}
+
+record(longin, "$(P)$(R)PTZSpeed_RBV") {
+    field(DESC, "PTZ speed readback")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_SPEED")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)$(R)PTZMoveTimeout") {
+    field(DESC, "PTZ deadman timeout")
+    field(EGU,  "s")
+    field(PREC, "2")
+    field(DRVL, "0.1")
+    field(DRVH, "30")
+    field(VAL,  "2")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_MOVE_TIMEOUT")
+    info(autosaveFields, "VAL")
+}
+
+record(ai, "$(P)$(R)PTZMoveTimeout_RBV") {
+    field(DESC, "PTZ deadman timeout")
+    field(EGU,  "s")
+    field(PREC, "2")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_MOVE_TIMEOUT")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)$(R)Zoom") {
+    field(DESC, "Absolute optical zoom")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_ZOOM")
+}
+
+record(longin, "$(P)$(R)Zoom_RBV") {
+    field(DESC, "Absolute optical zoom")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_ZOOM")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)ZoomMin_RBV") {
+    field(DESC, "Minimum zoom position")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_ZOOM_MIN")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)ZoomMax_RBV") {
+    field(DESC, "Maximum zoom position")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_ZOOM_MAX")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)$(R)Focus") {
+    field(DESC, "Absolute focus position")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FOCUS")
+}
+
+record(longin, "$(P)$(R)Focus_RBV") {
+    field(DESC, "Absolute focus position")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FOCUS")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)FocusMin_RBV") {
+    field(DESC, "Minimum focus position")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FOCUS_MIN")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)FocusMax_RBV") {
+    field(DESC, "Maximum focus position")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FOCUS_MAX")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)$(R)AutoFocus") {
+    field(DESC, "Autofocus command")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_AUTO_FOCUS")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
+}
+
+record(bi, "$(P)$(R)AutoFocus_RBV") {
+    field(DESC, "Autofocus status")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_AUTO_FOCUS")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Disabled")
+    field(ONAM, "Enabled")
+}
+
+record(bo, "$(P)$(R)Refocus") {
+    field(DESC, "Run one-shot autofocus")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_REFOCUS")
+    field(ZNAM, "Idle")
+    field(ONAM, "Refocus")
+    field(HIGH, "0.1")
+}
+
+record(bi, "$(P)$(R)PTZSupported_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_SUPPORTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Unsupported")
+    field(ONAM, "Supported")
+}
+
+record(bi, "$(P)$(R)PTZSpeedSupported_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PTZ_SPEED_SUPPORTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Unsupported")
+    field(ONAM, "Supported")
+}
+
+record(bi, "$(P)$(R)ZoomSupported_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_ZOOM_SUPPORTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Unsupported")
+    field(ONAM, "Supported")
+}
+
+record(bi, "$(P)$(R)FocusSupported_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FOCUS_SUPPORTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Unsupported")
+    field(ONAM, "Supported")
+}
+
+record(bi, "$(P)$(R)AutoFocusSupported_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_AUTO_FOCUS_SUPPORTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Unsupported")
+    field(ONAM, "Supported")
+}
+
+record(bi, "$(P)$(R)RTSPConnected_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_RTSP_CONNECTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Disconnected")
+    field(ONAM, "Connected")
+}
+
+record(bi, "$(P)$(R)ControlConnected_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_CONTROL_CONNECTED")
+    field(SCAN, "I/O Intr")
+    field(ZNAM, "Disconnected")
+    field(ONAM, "Connected")
+}
+
+record(lsi, "$(P)$(R)CapabilityStatus_RBV") {
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_CAPABILITY_STATUS")
+    field(SIZV, "256")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)$(R)MeasuredFPS_RBV") {
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_MEASURED_FPS")
+    field(PREC, "2")
+    field(EGU,  "fps")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)$(R)PublishedFPS_RBV") {
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_PUBLISHED_FPS")
+    field(PREC, "2")
+    field(EGU,  "fps")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)$(R)FrameAge_RBV") {
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_FRAME_AGE")
+    field(PREC, "2")
+    field(EGU,  "s")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)DroppedFrames_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_DROPPED_FRAMES")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)$(R)ReconnectCount_RBV") {
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_RECONNECT_COUNT")
+    field(SCAN, "I/O Intr")
+}
+
+record(lsi, "$(P)$(R)LastError_RBV") {
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))REOLINK_LAST_ERROR")
+    field(SIZV, "256")
+    field(SCAN, "I/O Intr")
+}
